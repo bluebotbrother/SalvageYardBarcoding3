@@ -37,7 +37,7 @@ class MyRecognitionListener  implements RecognitionListener {
         }
     }
       
-
+   
     
 	@Override
 	 public void onBeginningOfSpeech() {

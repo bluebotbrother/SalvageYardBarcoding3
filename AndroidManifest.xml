@@ -34,7 +34,8 @@
     </intent-filter>
 </activity>
 		<activity android:name=".MSRSetting" />
-		<activity android:name=".BluetoothHelper" />		
+		<activity android:name=".BluetoothHelper" />
+		<activity android:name=".test" />		
 		<activity android:name=".HIDSetting" />		
 		<activity android:name=".BluetoothSetting" />		
 		<activity android:name=".DataProcess" />		

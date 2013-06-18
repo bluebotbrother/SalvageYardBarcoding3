@@ -121,7 +121,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
     private ListView mConversationView;
     private TextView blueToothstatusTitle;    
     private TextView activityTitle; 
-    BluetoothHelper mBluetoothHelper;
+    
     
     // Scanner Vars
     private TextToSpeech tts;
@@ -151,7 +151,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         activityTitle = (TextView) findViewById(R.id.title_left_text);
         activityTitle.setText(R.string.app_name);
         blueToothstatusTitle = (TextView) findViewById(R.id.title_right_text);
-        mBluetoothHelper = new BluetoothHelper(this);
+        
         
         //registers the receiver when bluetooth is connected/disconnect but not paired
         IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
@@ -241,7 +241,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
        // registerReceiver(r, filter);
         
 
-        MediaButtonIntentReceiver buttonaction=new MediaButtonIntentReceiver();
+      //  MediaButtonIntentReceiver buttonaction=new MediaButtonIntentReceiver();
         IntentFilter buttonpressed = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);  
         buttonpressed.setPriority(10000); 
         this.registerReceiver(buttonaction,buttonpressed);    
@@ -258,7 +258,11 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	                  @Override
 	                  public void onClick(View v) 
 	                  {
-	                	  sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
+	    
+	                	  Intent start=new Intent(MainActivity.this,test.class);
+	                      startActivity(start);       
+	                      
+	                	  // sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
 	                		 // May need this for headsets
 	                	  //http://stackoverflow.com/questions/14991158/using-the-android-recognizerintent-with-a-bluetooth-headset
 	                  
@@ -268,9 +272,17 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
        
     }
     	
-   
-    
-  //The BroadcastReceiver that listens for bluetooth broadcasts
+    private final BroadcastReceiver buttonaction = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+        
+        Intent start=new Intent(MainActivity.this,test.class);
+        startActivity(start);       
+        
+        }
+    };
+        
+        //The BroadcastReceiver that listens for bluetooth broadcasts
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
