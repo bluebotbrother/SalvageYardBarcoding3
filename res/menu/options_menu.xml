@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item 	android:id="@+id/connect"
+            android:icon="@android:drawable/ic_menu_add"	
+			android:title="@string/connect" />
+	<item 	android:id="@+id/moveparts" 
+            android:icon="@android:drawable/ic_menu_set_as"	
+			android:title="@string/moveparts" />
+	<item 	android:id="@+id/pullparts" 
+            android:icon="@android:drawable/ic_menu_search"	
+			android:title="@string/pullparts" />		
+	<item 	android:id="@+id/gradeparts" 
+            android:icon="@android:drawable/ic_menu_edit"	
+			android:title="@string/gradeparts" />
+	<item 	android:id="@+id/stageinspectparts" 
+            android:icon="@android:drawable/ic_menu_view"	
+			android:title="@string/stageinspectparts" />
+	<item 	android:id="@+id/shipinspectparts" 
+            android:icon="@android:drawable/ic_menu_view"	
+			android:title="@string/shipinspectparts" />
+	<item 	android:id="@+id/tracking" 
+            android:icon="@android:drawable/ic_menu_info_details"	
+			android:title="@string/tracking" />
+	<item 	android:id="@+id/setting" 
+            android:icon="@android:drawable/ic_menu_preferences"	
+			android:title="@string/setting" />
+</menu>

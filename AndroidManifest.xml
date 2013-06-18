@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pamsware.salvageyardbarcoding"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="7" />
+<uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.pamsware.salvageyardbarcoding.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             </activity>
+            <activity android:name=".Settings"></activity>
+		<activity android:name=".SystemSetting" />
+		<activity android:name=".BluetoothTesting">
+	    <intent-filter>
+        <action android:name="android.intent.action.MEDIA_BUTTON"/>
+        
+    </intent-filter>
+</activity>
+		<activity android:name=".MSRSetting" />
+		<activity android:name=".BluetoothHelper" />		
+		<activity android:name=".HIDSetting" />		
+		<activity android:name=".BluetoothSetting" />		
+		<activity android:name=".DataProcess" />		
+		<activity android:name=".ScanOption" />			
+		<activity android:name=".BarcodeOption" />		
+		<activity android:name=".SetBarcode" />					
+            <activity android:name=".DeviceListActivity"
+                  android:label="@string/select_device"
+                  android:theme="@android:style/Theme.Dialog" />
+         
+      
+       
+    </application>
+	
+</manifest>
