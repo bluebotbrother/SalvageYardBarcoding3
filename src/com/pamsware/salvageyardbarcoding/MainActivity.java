@@ -254,38 +254,19 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
           
       
       
-        btnTest.setOnClickListener(new View.OnClickListener() 
-
-	        {
+        btnTest.setOnClickListener(new View.OnClickListener() {
 	                  @Override
 	                  public void onClick(View v) 
 	                  {
-	                	  String text;
-	                	  HashMap<String, String> myHashRender = new HashMap<String, String>();
-
-	                	    if (mBluetoothHelper.isOnHeadsetSco())
-	                	    {
-	                	        myHashRender.put(TextToSpeech.Engine.KEY_PARAM_STREAM, 
-	                	            String.valueOf(AudioManager.STREAM_VOICE_CALL));
-	                	    }
-	                	    tts.speak(text, TextToSpeech.QUEUE_FLUSH, myHashRender);
-	                	}
-	                	  
-	                	  
-	                	  
-	                	  
-	                	  
-//	                	  Intent start=new Intent(MainActivity.this,BluetoothHelper.class);
-//	                	  startActivity(start);
-	                	  //sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
+	                	  sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
 	                		 // May need this for headsets
 	                	  //http://stackoverflow.com/questions/14991158/using-the-android-recognizerintent-with-a-bluetooth-headset
 	                  
+	        }
 	        });
-    }
-        
-       
          
+       
+    }
     	
    
     
