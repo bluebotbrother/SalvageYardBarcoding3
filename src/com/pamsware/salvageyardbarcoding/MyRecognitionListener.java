@@ -56,7 +56,16 @@ class MyRecognitionListener  implements RecognitionListener {
 
 	 @Override
 	 public void onError(int error) {
-	  Log.d("Speech", "onError");
+//		 if ((error == SpeechRecognizer.ERROR_NO_MATCH)
+//				  || (error == SpeechRecognizer.ERROR_SPEECH_TIMEOUT)){
+//
+//				  }  
+//				  else if(error==SpeechRecognizer.ERROR_RECOGNIZER_BUSY){
+//
+//				  }
+//				  recognizer.startListening(recognizerIntent);
+//				}  
+	  Log.d("Speech", "onError + Error code is "+error);
 	 }
 
 	 @Override
