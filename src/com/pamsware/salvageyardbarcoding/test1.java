@@ -22,7 +22,7 @@ import android.util.Log;
 
 import android.widget.TextView;
 
-public class test extends Activity {
+public class test1 extends Activity {
 	
             protected TextView mInfoTextview;
 
@@ -155,13 +155,13 @@ public class test extends Activity {
 //
                     // During the active life time of the app, a user may turn on and off the head set.
                     // So register for broadcast of connection states.
-                    registerReceiver(mHeadsetBroadcastReceiver, 
-                                    new IntentFilter(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED));
+        //            registerReceiver(mHeadsetBroadcastReceiver, 
+        //                            new IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED ));
                     // Calling startVoiceRecognition does not result in immediate audio connection.
                     // So register for broadcast of audio connection states. This broadcast will
                     // only be sent if startVoiceRecognition returns true.
                     registerReceiver(mHeadsetBroadcastReceiver, 
-                                    new IntentFilter(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED));
+                                   new IntentFilter(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED));
                 }
             };
 
@@ -171,75 +171,91 @@ public class test extends Activity {
 //
                 @Override
                 public void onReceive(Context context, Intent intent)
-                {
-                    String action = intent.getAction();
-                    int state;
-                    int previousState = intent.getIntExtra(BluetoothHeadset.EXTRA_PREVIOUS_STATE, BluetoothHeadset.STATE_DISCONNECTED);
-                    String log = ""; //$NON-NLS-1$
-                    if (action.equals(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED))
-                    {
-                        state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, BluetoothHeadset.STATE_DISCONNECTED);
-                        if (state == BluetoothHeadset.STATE_CONNECTED)
-                        {
-                            mConnectedHeadset = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-
-                            mInfoTextview.append("\n\nDevice name = " + mConnectedHeadset.getName()); //$NON-NLS-1$
-
-                            // Audio should not be connected yet but just to make sure.
-                            if (mBluetoothHeadset.isAudioConnected(mConnectedHeadset))
-                            {
-                                log = "Headset connected audio already connected"; //$NON-NLS-1$
-                            }
-                            else
-                            {
-                                // Calling startVoiceRecognition always returns false here, 
-                                // that why a count down timer is implemented to call
-                                // startVoiceRecognition in the onTick and onFinish.
-                                if (mBluetoothHeadset.startVoiceRecognition(mConnectedHeadset))
-                                {
-                                    log = "Headset connected startVoiceRecognition returns true";
-                                    mCountDown.start();//$NON-NLS-1$
-                                }
-                                else
-                                {
-                                    log = "Headset connected startVoiceRecognition returns false"; //$NON-NLS-1$
-                                    mCountDown.start();
-                                }
-                            }
-                        }
-                        else if (state == BluetoothHeadset.STATE_DISCONNECTED)
-                        {
-                            // Calling stopVoiceRecognition always returns false here
-                            // as it should since the headset is no longer connected.
-                            Log.d("disconnect","device");
-                        	mConnectedHeadset = null;
-                        }
-                    }
-                    else // audio
-                    {
-                    	//
-                        state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
-                        if (state == BluetoothHeadset.STATE_AUDIO_CONNECTED)
-                        {
-                            log = "Head set audio connected, cancel countdown timer";  //$NON-NLS-1$
-                            
-                            mCountDown.start();    
-                        }
-                        else if (state == BluetoothHeadset.STATE_AUDIO_DISCONNECTED)
-                        {
-                            // The headset audio is disconnected, but calling
-                            // stopVoiceRecognition always returns true here.
-                            boolean returnValue = mBluetoothHeadset.stopVoiceRecognition(mConnectedHeadset);
-                            log = "Audio disconnected stopVoiceRecognition return " + returnValue; //$NON-NLS-1$
-                        }
-                    }   
-
-                    log += "\nAction = " + action + "\nState = " + state //$NON-NLS-1$ //$NON-NLS-2$
-                            + " previous state = " + previousState; //$NON-NLS-1$
-                    mInfoTextview.append("\n\n" + log); //$NON-NLS-1$
-                    Log.d(TAG, log);
-                }
-            };
+                {  
+                	Log.d("audio connected","working");
+                	String action = intent.getAction();	
+                	
+                	//if(action.equals(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED)){
+                	//	int state=intent.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_STATE, -1);
+                		mCountDown.start();
+                	//	Log.d("state",""+state);
+                	//			Log.d("audio","audio connected");
+                	}
+                	
+                };
+//                    String action = intent.getAction();
+//                    int state;
+//                    int previousState = intent.getIntExtra(BluetoothHeadset.EXTRA_PREVIOUS_STATE, BluetoothHeadset.STATE_DISCONNECTED);
+//                    String log = ""; //$NON-NLS-1$
+//                    if (action.equals(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED))
+//                    {
+//                        state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, BluetoothHeadset.STATE_DISCONNECTED);
+//                        if (state == BluetoothHeadset.STATE_CONNECTED)
+//                        {
+//                            mConnectedHeadset = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+//
+//                            mInfoTextview.append("\n\nDevice name = " + mConnectedHeadset.getName()); //$NON-NLS-1$
+//
+//                            // Audio should not be connected yet but just to make sure.
+//                            if (mBluetoothHeadset.isAudioConnected(mConnectedHeadset))
+//                            {
+//                                log = "Headset connected audio already connected"; //$NON-NLS-1$
+//                            }
+//                            else
+//                            {
+//                                // Calling startVoiceRecognition always returns false here, 
+//                                // that why a count down timer is implemented to call
+//                                // startVoiceRecognition in the onTick and onFinish.
+//                                if (mBluetoothHeadset.startVoiceRecognition(mConnectedHeadset))
+//                                {
+//                                    log = "Headset connected startVoiceRecognition returns true";
+//                                    //mCountDown.start();//$NON-NLS-1$
+//                                }
+//                                else
+//                                {
+//                                    log = "Headset connected startVoiceRecognition returns false"; //$NON-NLS-1$
+//                                    mCountDown.start();
+//                                }
+//                            }
+//                        }
+//                        else if (state == BluetoothHeadset.STATE_DISCONNECTED)
+//                        {
+//                            // Calling stopVoiceRecognition always returns false here
+//                            // as it should since the headset is no longer connected.
+//                            Log.d("disconnect","device");
+//                        	mConnectedHeadset = null;
+//                        }
+//                    }
+//                    else // audio
+//                    {
+//                    	//
+//                        state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE, BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
+//                        if (state == BluetoothHeadset.STATE_AUDIO_CONNECTED)
+//                        {
+//                            log = "Head set audio connected, cancel countdown timer";  //$NON-NLS-1$
+////                            mAudioManager.startBluetoothSco();
+////                        	
+////                            MyRecognitionListener listener = new MyRecognitionListener();
+////                    	    final SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
+////                      	    sr.setRecognitionListener(listener);
+////                      	  sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
+//                            mCountDown.cancel();    
+//                        }
+//                        else if (state == BluetoothHeadset.STATE_AUDIO_DISCONNECTED)
+//                        {
+//                            // The headset audio is disconnected, but calling
+//                            // stopVoiceRecognition always returns true here.
+//                            boolean returnValue = mBluetoothHeadset.stopVoiceRecognition(mConnectedHeadset);
+//                            log = "Audio disconnected stopVoiceRecognition return " + returnValue; //$NON-NLS-1$
+//                        }
+//                    }   
+//
+//                    log += "\nAction = " + action + "\nState = " + state //$NON-NLS-1$ //$NON-NLS-2$
+//                            + " previous state = " + previousState; //$NON-NLS-1$
+//                    mInfoTextview.append("\n\n" + log); //$NON-NLS-1$
+//                    Log.d(TAG, log);
+//                }
+//            };
 
 
             @SuppressLint("NewApi")
@@ -252,17 +268,18 @@ public class test extends Activity {
                     String log;
                     if (mBluetoothHeadset.isAudioConnected(mConnectedHeadset))
                     {	
-                    	mAudioManager.startBluetoothSco();
-                    	
-                        MyRecognitionListener listener = new MyRecognitionListener();
-                	    final SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
-                  	    sr.setRecognitionListener(listener);
-//              	    Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-//              	    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-//              	    intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getApplication().getPackageName());
-//                      sr.startListening(intent);
-                 	   sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
-                        log = "\nonTick audio already connected"; //$NON-NLS-1$
+//                    	mAudioManager.startBluetoothSco();
+//                    	
+//                        MyRecognitionListener listener = new MyRecognitionListener();
+//                	    final SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
+//                  	    sr.setRecognitionListener(listener);
+////              	    Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+////              	    intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+////              	    intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getApplication().getPackageName());
+////                      sr.startListening(intent);
+                 	  // sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
+                       
+                    	log = "\nonTick audio already connected"; //$NON-NLS-1$
                        
                     }
                     else
@@ -272,6 +289,7 @@ public class test extends Activity {
                         // It is somewhere in between 500 to a 1000.
                         if (mBluetoothHeadset.startVoiceRecognition(mConnectedHeadset))
                         {
+                        	
                             log = "\nonTick startVoiceRecognition returns true"; //$NON-NLS-1$
                         }
                         else

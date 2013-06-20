@@ -157,7 +157,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         IntentFilter filter1 = new IntentFilter(BluetoothDevice.ACTION_ACL_CONNECTED);
         IntentFilter filter2 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECT_REQUESTED);
         IntentFilter filter3 = new IntentFilter(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        this.registerReceiver(mReceiver, filter1);
+      //  this.registerReceiver(mReceiver, filter1);
        // this.registerReceiver(mReceiver, filter2);
         //this.registerReceiver(mReceiver, filter3);
     
@@ -242,9 +242,9 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         
 
       //  MediaButtonIntentReceiver buttonaction=new MediaButtonIntentReceiver();
-        IntentFilter buttonpressed = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);  
-        buttonpressed.setPriority(10000); 
-        this.registerReceiver(buttonaction,buttonpressed);    
+//        IntentFilter buttonpressed = new IntentFilter(Intent.ACTION_MEDIA_BUTTON);  
+//        buttonpressed.setPriority(10000); 
+//        this.registerReceiver(buttonaction,buttonpressed);    
 
 
   	  
@@ -259,7 +259,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	                  public void onClick(View v) 
 	                  {
 	    
-	               	  Intent start=new Intent(MainActivity.this,test.class);
+	               	  Intent start=new Intent(MainActivity.this,speechtotext.class);
 	                    startActivity(start);       
 	                      
 	              //  	   sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
@@ -276,7 +276,7 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         @Override
         public void onReceive(Context context, Intent intent) {
         
-        Intent start=new Intent(MainActivity.this,test.class);
+        Intent start=new Intent(MainActivity.this,speechtotext.class);
         startActivity(start);       
         
         }
