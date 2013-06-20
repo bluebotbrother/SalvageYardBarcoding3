@@ -211,11 +211,11 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
         }      
         //Scanner Code
         
-//        MyRecognitionListener listener = new MyRecognitionListener();
-//  	    final SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
-//  	    
-//  	    sr.setRecognitionListener(listener);
-//  	    listener.addSpeechHeardListener(this);
+        MyRecognitionListener listener = new MyRecognitionListener();
+  	    final SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
+  	    
+  	    sr.setRecognitionListener(listener);
+  	    listener.addSpeechHeardListener(this);
 //  	    
   	  
   	
@@ -261,8 +261,8 @@ public class MainActivity extends Activity implements TextToSpeech.OnInitListene
 	    
 	               	  Intent start=new Intent(MainActivity.this,speechtotext.class);
 	                    startActivity(start);       
-	                      
-	              //  	   sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
+//	                      
+	      //	   sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
 	                		 // May need this for headsets
 	                	  //http://stackoverflow.com/questions/14991158/using-the-android-recognizerintent-with-a-bluetooth-headset
 	                  

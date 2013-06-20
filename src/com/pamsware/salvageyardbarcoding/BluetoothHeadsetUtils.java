@@ -197,7 +197,7 @@ public abstract class BluetoothHeadsetUtils
                 }
             }
         }
-
+        Log.d("sco","disconnected");
         return false;
     }
 

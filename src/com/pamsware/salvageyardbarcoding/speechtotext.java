@@ -240,14 +240,17 @@ public class speechtotext extends Activity{
                 public void onFinish()
                 {   Log.d("countdown", "finsih");
                 
-                mAudioManager.startBluetoothSco();
-                mAudioManager.setBluetoothScoOn(true);
-            MyRecognitionListener listener = new MyRecognitionListener();
-      	    final SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
-      	    sr.setRecognitionListener(listener);
-      	  mAudioManager.startBluetoothSco();
-          mAudioManager.setBluetoothScoOn(true);
-      	    sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
+                Intent inte=new Intent(speechtotext.this,Bluetooth.class);
+                startActivity(inte);
+//                mAudioManager.startBluetoothSco();
+////                mAudioManager.setBluetoothScoOn(true);
+//            MyRecognitionListener listener = new MyRecognitionListener();
+//      	    final SpeechRecognizer sr = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
+//      	    
+////      	  mAudioManager.startBluetoothSco();
+////          mAudioManager.setBluetoothScoOn(true);
+//          sr.setRecognitionListener(listener);  
+//          sr.startListening(RecognizerIntent.getVoiceDetailsIntent(getApplicationContext()));
       	    
                
                 
